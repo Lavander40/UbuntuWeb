@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgre:
+    image: postgres
+    container_name: postgre_db
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: students
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345
+    volumes:
+       - ./pg01.sql:/docker-entrypoint-initdb.d/pg01.sql
+    networks:
+      - net
+
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "5000:5000"
+    depends_on:
+      - postgre
+    networks:
+      - net
+        
+networks:
+  net:
