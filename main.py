@@ -28,7 +28,7 @@ conn = connect_to_postgres()
 while conn is None:
     print("Waiting for PostgreSQL to initialize...")
     conn = connect_to_postgres()
-    time.sleep(5)  # Wait for 5 seconds before retrying
+    time.sleep(5)
 
 app = Flask(__name__)
 

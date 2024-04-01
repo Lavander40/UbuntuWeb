@@ -9,10 +9,11 @@ services:
       - "5432:5432"
     environment:
       POSTGRES_DB: students
-      POSTGRES_USER: postgres
+      POSTGRES_USER: admin
       POSTGRES_PASSWORD: 12345
     volumes:
        - ./pg01.sql:/docker-entrypoint-initdb.d/pg01.sql
+       - data:/var/lib/postgresql/data
     networks:
       - net
 
@@ -28,3 +29,6 @@ services:
         
 networks:
   net:
+
+volumes:
+  data:
