@@ -10,9 +10,9 @@ def connect_to_postgres():
 
     while retries < max_retries:
         try:
-            conn = psycopg2.connect(dbname='students', user='postgres', password='12345', host='postgre')
+            c = psycopg2.connect(dbname='students', user='postgres', password='12345', host='postgres')
             print("Connected to PostgreSQL!")
-            return conn
+            return c
         except psycopg2.OperationalError as e:
             print(f"Error connecting to PostgreSQL: {e}")
             print("Retrying...")
